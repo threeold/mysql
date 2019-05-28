@@ -1,8 +1,18 @@
-///===============if的用户====================================
+
+///===============ROUND四舍五入函数====================================
+
+SELECT pay_money,ROUND(pay_money,1)  FROM orders
+
+///===============TRUNCATE舍去法====================================
+
+SELECT pay_money,TRUNCATE(pay_money,1)  FROM orders
+
+
+///===============if的用法====================================
 
 SELECT sum(if(pay_money>100,1,0)) as tj_num FROM orders
 
-///===============CASE用户====================================
+///===============CASE用法====================================
 SELECT
 CASE
 WHEN pay_money>=0 and pay_money<100 THEN
