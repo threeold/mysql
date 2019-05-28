@@ -1,0 +1,15 @@
+
+
+
+///===============CASE用户====================================
+SELECT
+CASE
+WHEN pay_money>=0 and pay_money<100 THEN
+    '100'
+WHEN pay_money>=100 and pay_money<200 THEN
+    '200'
+ELSE
+    '300'
+END AS test 
+FROM
+    orders
