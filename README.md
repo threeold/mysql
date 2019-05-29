@@ -6,7 +6,7 @@ SELECT user_id FROM orders where user_id=1 limit 1
 ### 2、group gy、order by用法
 
 SELECT user_id,sum(pay_money) as pay_money,count(id) as count_tj  
-FROM orders GROUP BY user_id ORDER BY pay_money desc
+FROM orders GROUP BY user_id HAVING count_tj>2 ORDER BY pay_money desc
 
 ### 3、ROUND四舍五入函数
 
@@ -183,3 +183,21 @@ InnoDB是索引组织表， myisam 是堆表；
 
 尽量避免在 where 子句中使用!=或<>操作符，否则将引擎放弃使用索引而进行全表扫描；
 
+### 表结构优化
+ID 所有建表的时候设置主键；
+
+选择正确的存储引擎 ;
+
+使用可存下数据的最小的数据类型，整型 < date,time < char,varchar < blob；
+
+使用简单的数据类型，整型比字符处理开销更小，因为字符串的比较更复杂。如，int类型存储时间类型，bigint类型转ip函数；
+
+使用合理的字段属性长度，固定长度的表会更快。
+
+使用enum、char而不是varchar；
+
+尽可能使用not null定义字段(给空字段设置默认值)；
+
+尽量少用text;
+
+给频繁使用和查询的字段建立合适的索引；
