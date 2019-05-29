@@ -1,9 +1,9 @@
 # mysql基本语法
-# ===============单条记录====================================
+# 单条记录
 
 SELECT user_id FROM orders where user_id=1 limit 1
 
-===============group gy ====order by=======================
+# （group gy） （order by）
 
 SELECT user_id,sum(pay_money) as pay_money,count(id) as count_tj  
 FROM orders GROUP BY user_id ORDER BY pay_money desc
