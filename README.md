@@ -137,8 +137,23 @@ INNER JOIN(
 幻读解决了不重复读，保证了同一个事务里，查询的结果都是事务开始时的状态（一致性）
 
 
-## 数据表类型
+## 表结构的优化
+
+#### 数据表类型
 MyIASM、InnoDB、HEAP、ISAM、MERGE、DBD、Gemeni(一般只知道MyIASM、InnoDB即可)
 
-## innodb引擎的4大特性
+#### innodb引擎的4大特性
 插入缓冲(insert buffer)、二次写(double write)、自适应哈希索引(ahi)、预读(read ahead)
+
+
+#### InnoDB引擎的行锁是基于索引
+
+#### Mysql中的myisam与innodb的区别
+InooDB支持事务，而MyISAM不支持事务；
+InnoDB支持行级锁，而MyISAM支持表级锁；
+InnoDB支持MVCC，而MyISAM不支持；
+InnoDB支持外键，而MyISAM不支持；
+InnoDB不支持全文索引，而MyISAM支持；
+InnoDB不能通过直接拷贝表文件的方法拷贝表到另外一台机器， myisam 支持；
+InnoDB表支持多种行格式， myisam 不支持；
+InnoDB是索引组织表， myisam 是堆表；
