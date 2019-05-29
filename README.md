@@ -205,9 +205,9 @@ ID 所有建表的时候设置主键；
 ### mysql常用的函数:
 sum(和)、count（计数几条） 、avg（平均值）、min（最小值）、max（最大值）
 
-### 常用的命令 Explain、describe、show、truncate
+## 常用的命令 Explain、describe、show、truncate
 
-#### Explain 
+### Explain使用使用方法 
 使用方法，在select语句前加上explain就可以了：
 
 如：EXPLAIN SELECT user_id FROM accounts_wallet_order where user_id=1 
@@ -236,4 +236,31 @@ sum(和)、count（计数几条） 、avg（平均值）、min（最小值）、
 MYSQL认为必须检查的用来返回请求数据的行数
 
 ##### Extra
-关于MYSQL如何解析查询的额外信息。将在表4.3中讨论，但这里可以看到的坏的例子是Using temporary和Using filesort，意思MYSQL根本不能使用索引，结果是检索会很慢
+	关于MYSQL如何解析查询的额外信息。将在表4.3中讨论，但这里可以看到的坏的例子是Using temporary和Using filesort，意思MYSQL根本不能使用索引，结果是检索会很慢
+
+
+### extra列返回的描述的意义
+
+##### Distinct
+	一旦MYSQL找到了与行相联合匹配的行，就不再搜索了
+
+#####  Not exists
+	MYSQL优化了LEFT JOIN，一旦它找到了匹配LEFT JOIN标准的行，就不再搜索了
+
+##### Range checked for each
+	没有找到理想的索引，因此对于从前面表中来的每一个行组合，MYSQL检查使用哪个索引，并用它来从表中返回行。
+
+##### Record（index map:#）
+    这是使用索引的最慢的连接之一	
+
+##### Using filesort
+	看到这个的时候，查询就需要优化了。MYSQL需要进行额外的步骤来发现如何对返回的行排序。它根据连接类型以及存储排序键值和匹配条件的全部行的行指针来排序全部行
+
+##### Using index
+	列数据是从仅仅使用了索引中的信息而没有读取实际的行动的表返回的，这发生在对表的全部的请求列都是同一个索引的部分的时候
+
+##### Using temporary
+	看到这个的时候，查询需要优化了。这里MYSQL需要创建一个临时表来存储结果，这通常发生在对不同的列集进行ORDER BY上，而不是GROUP BY上
+
+##### Where used
+	使用了WHERE从句来限制哪些行将与下一张表匹配或者是返回给用户。如果不想返回表中的全部行，并且连接类型ALL或index，这就会发生，或者是查询有问题
