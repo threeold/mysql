@@ -83,4 +83,8 @@
 	INNER JOIN(
    		SELECT id,login FROM order_0  where id=14600
 	) as b on  o.id=b.id
-
+	
+#### mysql查询时给查出来的数据设置一个自增的序号
+     
+      set @i=0;
+      SELECT (@i:=@i+1) as "别名"， FROM order_0, (SELECT @i:=0) AS order_0;
