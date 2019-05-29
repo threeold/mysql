@@ -1,5 +1,13 @@
-# 事务的基本特征
-原子性（atomicity）
-一致性（consistency）
-隔离性（isolation）
-持久性（durability）
+## 事务的基本特征
+原子性（atomicity）:一个事务必须视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分操作，这就是事务的原子性
+一致性（consistency）:数据库总数从一个一致性的状态转换到另一个一致性的状态
+隔离性（isolation）:一个事务所做的修改在最终提交以前，对其他事务是不可见的
+持久性（durability）:一旦事务提交，则其所做的修改就会永久保存到数据库中。此时即使系统崩溃，修改的数据也不会丢失。
+
+
+
+## 事务的隔离级别 
+读未提交(Read uncommitted)
+读已提交(Read committed)
+可重复读(Repeatable read)
+串行(Serializable)
