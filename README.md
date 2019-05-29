@@ -124,7 +124,7 @@
         declare today_d int;##今天几号
 	set todaytime=UNIX_TIMESTAMP(curdate());
 	set today_d=FROM_UNIXTIME(day_time+86400,'%d');
-  	CALL GetOrderLastDay(goodsid,@lasttime); ##最后一次执行时间
+  	CALL GetOrderLastDay(goodsid,@lasttime); ##调用“存储过程-1”，最后一次执行时间
 	if (@lasttime is NULL or day_time>@lasttime) and day_time<todaytime THEN
             ###读不到@lasttime或@lasttime小于 day_time，就执行这边的代码
 	end if;
