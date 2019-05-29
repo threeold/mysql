@@ -159,8 +159,8 @@
 
 
 #### union、union all（连接两个以上SELECT语句）
-      UNION 只会选取不同的值。
-      UNION ALL 可以选取重复的值！
+      UNION 在进行表链接后会筛选掉重复的记录，将会按照字段的顺序进行排序，
+      UNION ALL 不会去除重复记录，只是简单的将两个结果合并后就返回，从效率上说，UNION ALL 要比UNION快很多
       
 #### order by(排序)、between（两个值之间的数据范围内的值。这些值可以是数值、文本或者日期。）
       
