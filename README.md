@@ -1,4 +1,4 @@
-# mysql
+# mysql基本语法
 #===============单条记录====================================
 
 SELECT user_id FROM orders where user_id=1 limit 1
