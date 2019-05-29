@@ -148,7 +148,7 @@ MyIASM、InnoDB、HEAP、ISAM、MERGE、DBD、Gemeni(一般只知道MyIASM、Inn
 
 #### InnoDB引擎的行锁是基于索引
 
-#### Mysql中的myisam与innodb的区别
+### Mysql中的myisam与innodb的区别
 InooDB支持事务，而MyISAM不支持事务；
 
 InnoDB支持行级锁，而MyISAM支持表级锁；
@@ -164,4 +164,22 @@ InnoDB不能通过直接拷贝表文件的方法拷贝表到另外一台机器�
 InnoDB表支持多种行格式， myisam 不支持；
 
 InnoDB是索引组织表， myisam 是堆表；
+
+
+#### myisam与innodb 执行select count(*) myisam更快，因为myisam内部维护了一个计数器，可以直接调取。
+
+### sql语句优化
+避免select *，将需要查找的字段列出来；
+
+使用连接（join）来代替子查询；
+
+拆分大的delete或insert语句；
+
+使用limit对查询结果的记录进行限定；
+
+不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引尽量避免在where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描；
+
+尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描；
+
+尽量避免在 where 子句中使用!=或<>操作符，否则将引擎放弃使用索引而进行全表扫描；
 
