@@ -88,9 +88,12 @@ RIGHT JOIN order_1  as o1 on o.id=o1.id where o.id <14630
 
 
 ### 13、需要本表跟本表关联查询出来的数据
+
 SELECT o.id,o.login FROM order_0 as o
 INNER JOIN(
+
    SELECT id,login FROM order_0  where id=14600
+   
 ) as b on  o.id=b.id
 
 
