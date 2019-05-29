@@ -217,7 +217,7 @@ sum(和)、count（计数几条） 、avg（平均值）、min（最小值）、
 ##### table
 显示这一行的数据是关于哪张表的
 
-#####type
+##### type
 这是重要的列，显示连接使用了何种类型。从最好到最差的连接类型为const、eq_reg、ref、range、indexhe和ALL
 
 ##### possible_keys
