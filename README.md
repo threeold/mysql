@@ -88,3 +88,50 @@
      
       set @i=0;
       SELECT (@i:=@i+1) as "别名"， FROM order_0, (SELECT @i:=0) AS order_0;
+      
+      
+## 存储过程
+
+#### in 变量 int
+      in 调用 传参变量，参数类型int
+#### out 变量 int
+      out 返回，参数变量，参数类型int
+      
+#### declare 声明变量
+      declare todaytime int;##定义 todaytime是int
+      set todaytime=UNIX_TIMESTAMP(curdate());##给todaytime赋值
+      
+#### 调用或执行存储过程
+      CALL GetOrderLastDay(1,@lasttime);
+      SELECT @lasttime; ##查看值
+      ##goodsid 接收到的值 是1 
+      ##@last_day接收到的是 o_p返回的值
+      
+      
+### 存储过程-1    
+      CREATE DEFINER=`threeold`@`%` PROCEDURE `GetOrderLastDay`(in goodsid int,out o_p int)
+      BEGIN
+	      #执行到哪一天
+	      SELECT statisics_day into o_p from order_day where goods_id=goodsid ORDER BY statisics_day desc limit 1;
+      END
+      
+      
+###  存储过程-2
+
+      CREATE DEFINER=`threeold`@`%` PROCEDURE `SetOrderDay`(in goodsid int,in day_time int,in rate decimal(20,6),in price       decimal(20,2),in days int,in operation_time int)
+     BEGIN
+	declare todaytime int;##今天时间
+        declare today_d int;##今天几号
+	set todaytime=UNIX_TIMESTAMP(curdate());
+	set today_d=FROM_UNIXTIME(day_time+86400,'%d');
+  	CALL GetOrderLastDay(goodsid,@lasttime); ##最后一次执行时间
+	if (@lasttime is NULL or day_time>@lasttime) and day_time<todaytime THEN
+            ###读不到@lasttime或@lasttime小于 day_time，就执行这边的代码
+	end if;
+	if today_d="1" THEN  ##每月一号要执行的
+    	    ###每月一号要执行这边的代码
+  	end if;
+    END
+      
+      
+      
