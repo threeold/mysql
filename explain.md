@@ -3,7 +3,7 @@
 
 	如：EXPLAIN SELECT user_id FROM accounts_wallet_order where user_id=1 
 
-### EXPLAIN列的解释：
+## EXPLAIN列的解释：
 
 #### table
 	显示这一行的数据是关于哪张表的
@@ -34,7 +34,7 @@
 	意思MYSQL根本不能使用索引，结果是检索会很慢
 
 
-### extra列返回的描述的意义
+## extra列返回的描述的意义
 
 #### Distinct
 	一旦MYSQL找到了与行相联合匹配的行，就不再搜索了
@@ -67,7 +67,7 @@
 	如果不想返回表中的全部行，并且连接类型ALL或index，这就会发生，或者是查询有问题
 	
 	
-### type不同连接类型的解释（按照效率高低的顺序排序）
+## type不同连接类型的解释（按照效率高低的顺序排序）
 
 #### system
 	表只有一行：system表。这是const连接类型的特殊情况
