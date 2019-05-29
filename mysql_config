@@ -69,3 +69,8 @@ INNER JOIN 关键字左表（order_0）、右表（order_1）匹配的行才会�
 SELECT o.id,o.login,o1.login as login1 FROM order_0 as o RIGHT JOIN order_1  as o1 on o.id=o1.id where o.id <14630
 
 
+//============UNION==操作符合并两个或多个 SELECT 语句的结果===========================
+
+SELECT id,login FROM order_0 where id<14600
+UNION
+SELECT id,login FROM order_1  where id<14600
