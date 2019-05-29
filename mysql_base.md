@@ -114,10 +114,54 @@
 
 ## 常用的命令 Explain、describe、show、truncate
 
-	Explain使用方法：EXPLAIN SELECT user_id from orders where user_id=1
+#### Explain使用方法：
+	EXPLAIN SELECT user_id from orders where user_id=1
 	查看explain.md  
 	
-	DESCRIBE：查看表结构 DESCRIBE orders;
+#### DESCRIBE：
+	查看表结构 DESCRIBE orders;
+	
+#### show：
+	跟DESCRIBE是一样的只是语法不一样，查看表结构 show columns from  orders;
+	
+#### Truncate
+      是一个能够快速清空资料表内所有资料的SQL语法。并且能针对具有自动递增值的字段，做计数重置归零重新计算的作用。
+      
+      
+#### 删除数据程度从强到弱
+      1、drop  table orders 
+      drop将表格直接删除，没有办法找回
+      将删除表的结构、被依赖的约束(constrain)、触发器 (trigger)、索引(index);
+      依赖于该表的存储过程/函数将保留,但是变为invalid状态。
+      
+      2、truncate orders
+      删除表中的所有数据，不能与where一起使用
+      删除表中的所有行，但表结构及其列、约束、索引字段等保持不变。
+      新行标识所用的计数值重置为该列的种子（自增ID会重置，重新开始）。
+      执行速度比delete快
+      
+      3、delete from orders where id=1
+      删除表中的数据(可制定某一行)
 
-	show：查看表结构 show columns from  orders;
+## 常用的关键字：
+#### distinct（去重）、group by（对结果集进行分组）
+      group by的执行速度比group by快
 
+#### limit（返回的数据数量）、offset（配合limit使用）
+      比如有三条记录（1，2，3）
+
+      limit后面跟的是2条数据，offset后面是从第1条开始读取，结果（2，3）
+      SELECT  id  FROM  orders order by id LIMIT 2 OFFSET 1; 
+
+
+      limit后面是从第2条开始读，读取1条信息。，结果（3）
+      SELECT  goods_id  FROM  so_cat order by goods_id LIMIT 2,1;  
+
+
+#### union、union all（连接两个以上SELECT语句）
+      UNION 只会选取不同的值。
+      UNION ALL 可以选取重复的值！
+      
+#### order by(排序)、between（两个值之间的数据范围内的值。这些值可以是数值、文本或者日期。）
+      
+      
