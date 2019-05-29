@@ -1,26 +1,29 @@
 # mysql
-///===============单条记录====================================
+===============单条记录====================================
 
 SELECT user_id FROM orders where user_id=1 limit 1
 
-///===============group gy ====order by====================================
+===============group gy ====order by=======================
 
-SELECT user_id,sum(pay_money) as pay_money,count(id) as count_tj  FROM orders GROUP BY user_id ORDER BY pay_money desc
+SELECT user_id,sum(pay_money) as pay_money,count(id) as count_tj  
+FROM orders GROUP BY user_id ORDER BY pay_money desc
 
-///===============ROUND四舍五入函数====================================
+===============ROUND四舍五入函数=============================
 
 SELECT pay_money,ROUND(pay_money,1)  FROM orders
 
-///===============TRUNCATE舍去法====================================
+
+===============TRUNCATE舍去法===============================
 
 SELECT pay_money,TRUNCATE(pay_money,1)  FROM orders
 
 
-///===============if的用法====================================
+===============if的用法====================================
 
 SELECT sum(if(pay_money>100,1,0)) as tj_num FROM orders
 
-///===============CASE用法====================================
+
+===============CASE用法====================================
 SELECT
 CASE
 WHEN pay_money>=0 and pay_money<100 THEN
@@ -33,12 +36,16 @@ END AS test
 FROM
     orders
     
- ///===============insert ignore into 查询惟一索引不重复的数据，ignore如果有重复不报错跳过====================================   
+===============insert ignore into ==========  
+查询惟一索引不重复的数据，ignore如果有重复不报错跳过
+
 insert ignore into order_1(user_id,c_time)
 SELECT user_id,UNIX_TIMESTAMP(NOW()) as c_time 
 from orders where pay_money>0
 
-///===============UPDATE 批量更新====================================   
+
+
+===============UPDATE 批量更新=================
 UPDATE order_1 as p
   INNER JOIN
   (
