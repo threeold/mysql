@@ -49,6 +49,7 @@ from orders where pay_money>0
 
 
 ===============UPDATE 批量更新=================
+
 UPDATE order_1 as p
   INNER JOIN
   (
@@ -57,19 +58,22 @@ UPDATE order_1 as p
   set p.pay_money=s.pay_money;
 
 
-=======UNION= 连接两个以上的 SELECT 语句的结果组合到一个结果集合================
+=======UNION= 连接两个以上的 SELECT 语句的结果组合到一个结果集合========
+
 SELECT id,login FROM order_0 where id<14600
 UNION
 SELECT id,login FROM order_1  where id<14600
 
 
-//===============LEFT JOIN================================
-//LEFT JOIN 关键字从左表（order_0）返回所有的行，即使右表（order_1）中没有匹配。如果右表中没有匹配，则结果为 NULL
+===============LEFT JOIN================================
+
+关键字从左表（order_0）返回所有的行，即使右表（order_1）中没有匹配。如果右表中没有匹配，则结果为 NULL
 
 SELECT o.id,o.login,o1.login as login1 FROM order_0 as o 
 LEFT JOIN order_1  as o1 on o.id=o1.id where o.id <14630
 
-//===============RIGHT JOIN ================================
+===============RIGHT JOIN ================================
+
 关键字从右表（order_1）返回所有的行，即使左表（order_0）中没有匹配。如果左表中没有匹配，则结果为 NULL。
 
 SELECT o.id,o.login,o1.login as login1 FROM order_0 as o 
@@ -77,14 +81,10 @@ RIGHT JOIN order_1  as o1 on o.id=o1.id where o.id <14630
 
 
 //===============INNER JOIN ================================
+
 INNER JOIN 关键字左表（order_0）、右表（order_1）匹配的行才会返回
 
 SELECT o.id,o.login,o1.login as login1 FROM order_0 as o 
 RIGHT JOIN order_1  as o1 on o.id=o1.id where o.id <14630
 
 
-//============UNION==操作符合并两个或多个 SELECT 语句的结果===========================
-
-SELECT id,login FROM order_0 where id<14600
-UNION
-SELECT id,login FROM order_1 where id<14600
