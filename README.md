@@ -150,10 +150,18 @@ MyIASM、InnoDB、HEAP、ISAM、MERGE、DBD、Gemeni(一般只知道MyIASM、Inn
 
 #### Mysql中的myisam与innodb的区别
 InooDB支持事务，而MyISAM不支持事务；
+
 InnoDB支持行级锁，而MyISAM支持表级锁；
+
 InnoDB支持MVCC，而MyISAM不支持；
+
 InnoDB支持外键，而MyISAM不支持；
+
 InnoDB不支持全文索引，而MyISAM支持；
+
 InnoDB不能通过直接拷贝表文件的方法拷贝表到另外一台机器， myisam 支持；
+
 InnoDB表支持多种行格式， myisam 不支持；
+
 InnoDB是索引组织表， myisam 是堆表；
+
